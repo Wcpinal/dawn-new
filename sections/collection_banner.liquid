@@ -1,0 +1,63 @@
+    <section class="collection-banner">
+           <figure>
+                 {% if section.settings.side_img != blank %}
+                   <img src="{{ section.settings.side_img | image_url: width: 750 }}" alt="{{ collection.image | image_url: "original" }}">
+                   {% else %}
+             <img src="{{ collection.image | image_url: width: 750 }}" alt="{{ collection.image | image_url: "original" }}">
+             {% endif %}
+        </figure>
+        <div class="cb_main">
+            <div class="container">
+              <div class="cb_content">
+              
+              {% if section.settings.banner_text != blank %}
+                <h1>{{ section.settings.banner_text }}</h1>
+              {% else %}
+                <h1>{{ collection.title }}</h1>
+              {% endif %}
+              {% if section.settings.banner_dis != blank %}
+                <p>{{ section.settings.banner_dis }}</p>
+               {% else %}
+                  <p>{{ collection.description }}</p>
+               {% endif %}
+              </div>
+            </div>
+      </div>
+     
+    </section>
+                
+{% schema %}
+  {
+    "name": "collection_banner ",
+    "settings": [
+      {
+       "type": "image_picker",
+        "id": "side_img",
+        "label": "Service type image"
+      }
+      ,  
+     {
+    "type": "text",
+    "id": "banner_text",
+    "label": "Banner heading"
+  },  
+     {
+    "type": "text",
+    "id": "banner_dis",
+    "label": "Banner Discription"
+  }
+    ],
+      "presets": [
+    {
+      "name": "collection_banner ",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

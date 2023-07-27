@@ -1,0 +1,91 @@
+  <section>
+        <div class="container">
+            <div class="coll_services">
+                <div class="coll_s_main">
+
+                    <div class="swiper coll_services_slider">
+                        <div class="swiper-wrapper">
+                          
+                          {% for block in section.blocks %}
+                            <div class="swiper-slide col8 col-sm-5 col-s-3 col-xs-6">
+                                <div class="services_part">
+                                    <a href="#">
+                                        {{ block.settings.svg }}
+
+                                        <p>{{ block.settings.s_head }}</p>
+                                    </a>
+                                </div>
+                            </div>
+                          {% endfor %}
+                           
+                        
+                       
+                        
+
+                        </div>
+                        <div class="coll_services-prev slider-arrow d-none d-sm-block" tabindex="-1" role="button"
+                            aria-label="Previous slide" aria-controls="swiper-wrapper-e315ee10a1072adf2"
+                            aria-disabled="true">
+
+                            <svg width="15" height="27" viewBox="0 0 15 27" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 25L2.68667 13.5L13 2" stroke="#5A5A5A" stroke-width="3"></path>
+                            </svg>
+
+                        </div>
+                        <div class="coll_services-next slider-arrow d-none d-sm-block" tabindex="0" role="button"
+                            aria-label="Next slide" aria-controls="swiper-wrapper-e315ee10a1072adf2"
+                            aria-disabled="false">
+
+                            <svg width="15" height="27" viewBox="0 0 15 27" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 25L12.3133 13.5L2 2" stroke="#5A5A5A" stroke-width="3"></path>
+                            </svg>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ {% schema %}
+  {
+    "name": "coll-services",
+    "settings": [],
+    "blocks": [
+        {
+        "type": "slide",
+        "name": "Slide",
+        "limit": 6,
+        "settings": [
+           
+          {
+                "type": "html",
+                "id": "svg",
+                "label": "Insert Svg "
+            },
+           {
+              "type": "text",
+              "id": "s_head",
+              "label": "Service Title"
+            }
+            ]
+            }
+          ],
+
+    "presets": [
+    {
+      "name": "coll-services",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

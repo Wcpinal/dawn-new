@@ -1,0 +1,51 @@
+<div class="releted_products">
+<ul>
+ <li>   
+
+        {% assign group = "" %}
+        {% for tag in product.tags %}
+          
+          {% if tag contains "releted_palm" %}   
+            {% assign group = tag  %}    
+          {% endif %}
+          
+        {% endfor %}
+   
+    	{% for productrel in collections['all'].products limit:99 %}
+        <div>
+          {% if productrel.tags contains group %}          
+
+           {% assign tp_handle = product.handle %} 
+           {% assign rhandle = productrel.handle %}
+            {% unless tp_handle == rhandle %}
+            
+             {% render 'best-seller-product',
+               best-seller:productrel%}
+            {% endunless %}
+     
+          {% endif %}
+        </div>
+    	{% endfor %}
+
+  </li>
+</ul>
+</div>
+
+{% schema %}
+  {
+    "name": "releted products section",
+    "settings": [],
+      "presets": [
+    {
+      "name": "releted-products",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,78 @@
+<section>
+  <div class="container">
+    <div >
+      <ul class="products">
+            {% for productrel in collections['all'].products  %}
+              {% for tag in productrel.tags %}
+                {% if tag contains "oraganic compost" %} 
+        
+                    <li class="col3 col">      
+                  {% assign publishdate =  productrel.published_at | date: '%s'  %} 
+                  {% assign todate = "now" | date: '%s' %}
+                  {% assign diffSeconds = todate | minus: publishdate %}
+                  {% assign diffDays = diffSeconds | divided_by: 3600 | divided_by: 24 %}
+                  <br>
+                  {% if diffDays <= 10 %} 
+                        <div class="p_label">
+                                            new
+                          </div>
+                  {% endif %}
+                              
+                       {% render 'best-seller-product',
+                         best-seller:productrel %}
+                    
+                    </li>
+                  {% else %}
+                  <li class="col3 col d-none" ></li>
+                  
+                {% endif %}
+              {% endfor %}  
+          {% endfor %}
+      </ul>
+        
+    </div>
+  </div>
+</section>
+
+<style>
+.products{display: flex}
+.products li{list-style: none;position:relative;}
+  .p_label {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    padding: 9px 14px;
+    background: #603430;
+    display: inline-block;
+    font-family: 'Gotham';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+        z-index: 2;
+}
+</style>
+
+
+
+{% schema %}
+  {
+    "name": "products_with_saletag",
+    "settings": [],
+    "presets": [
+    {
+      "name": "products_with_saletag",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

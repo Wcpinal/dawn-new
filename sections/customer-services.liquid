@@ -1,0 +1,110 @@
+  {% comment %}
+  <script src="{{ 'jquery.min.js' | asset_url }}""></script>
+      <script src="{{ 'swipeer.js' | asset_url }}""></script>
+       <script src="{{ 'slick.js' | asset_url }}""></script>
+    {% endcomment %}
+    <section class="company_quality">
+        <div class="container">
+            <div class="cq_main">
+
+                <div class="swiper cq_slider">
+                    <div class="swiper-wrapper">
+                      
+                      {% for block in section.blocks %}
+                        <div class="swiper-slide col5 col-sm-4 col-xs-6 col">
+                            <div class="main">
+                        {% if block.settings.s_img != true %}
+                                <span style="display:none">
+                                    {{ block.settings.svg }}
+                                </span>
+                                                  {% else %}
+                           <span style="display:block">
+                                   {{ block.settings.svg }}
+                                </span>
+                          {% endif %}
+                                <div class="cq_details">
+                                    <h6>{{ block.settings.s_head }}</h6>
+                                   {{ block.settings.s_dis }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                    {% endfor %}                           
+                    </div>
+
+                    <div class="cq-prev d-none d-sm-block" tabindex="0" role="button" aria-label="Next slide"
+                        aria-controls="swiper-wrapper-abed8191101094f100" aria-disabled="false">
+
+                        <svg width="15" height="27" viewBox="0 0 15 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 25L2.68667 13.5L13 2" stroke="#5A5A5A" stroke-width="3" />
+                        </svg>
+
+                    </div>
+                    <div class="cq-next d-none d-sm-block" tabindex="0" role="button" aria-label="Next slide"
+                        aria-controls="swiper-wrapper-abed8191101094f100" aria-disabled="false">
+
+                        <svg width="15" height="27" viewBox="0 0 15 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 25L12.3133 13.5L2 2" stroke="#5A5A5A" stroke-width="3" />
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+{% schema %}
+  {
+    "name": "customer-services",
+    "settings": []
+    ,
+    "blocks": [
+        {
+        "type": "slide",
+        "name": "Slide",
+        "limit": 5,
+        "settings": [
+           
+          {
+                "type": "html",
+                "id": "svg",
+                "label": "Insert Svg "
+            },
+           {
+                "type": "checkbox",
+                "id": "s_img",
+                "label": "Svg ",
+              "default":true
+            },
+           {
+              "type": "text",
+              "id": "s_head",
+              "label": "Service Title"
+            },
+            {
+                "type": "richtext",
+                "id": "s_dis",
+                "label": "Service Discription"
+            }
+            ]
+            }
+          ]
+
+    ,
+    "presets": [
+    {
+      "name": "customer-services",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

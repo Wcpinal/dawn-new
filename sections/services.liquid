@@ -1,0 +1,132 @@
+
+ <section class="comapany-services">
+   {% if section.settings.side_img != blank %}        
+     <img src="{{ section.settings.side_img | img_url:"original" }}" alt="" class="cs_side">
+    {% else %}
+   <img src="{{ 'Group1.png' | asset_img_url:"original" }}" alt="" class="cs_side">
+   {% endif %}
+        <div class="container">
+            <div class="cs_main">
+                <div class="head">
+                    <h2>
+                       {{ section.settings.heading }}
+                    </h2>
+                </div>
+                <div class="cs_details">
+                    <ul>
+              {% for block in section.blocks %}
+                {% if block.type == "slide" %}
+                        <li class="col4 col-s-12 col custom_li_{{ forloop.index }}">
+                            <div class="services_part">
+                                <div class="img">
+                                    <figure class="cs">
+                  {% if  block.settings.s_img != blank %}
+                                        <img src="{{ block.settings.s_img | img_url:'original' }}" alt="">
+                       {% endif %}
+                                    </figure>
+                                </div>
+
+                                <div class="service_details">
+                                    <h4><a href="#">
+                                          {{ block.settings.s_head }}
+                                        </a></h4>
+                                  
+                                       {{ block.settings.s_dis }}
+                                  
+                                    <div class="p_arrow">
+                                        <a href="#">
+                                            <svg width="54" height="21" viewBox="0 0 54 21" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M53.6414 9.4861L41.3754 0.319889C40.9324 -0.0663053 40.1625 -0.105713 39.6457 0.21743C39.1289 0.548454 39.0656 1.1238 39.5086 1.51C39.5508 1.54941 39.593 1.58093 39.6457 1.61246L49.8234 9.22601H1.22344C0.548437 9.22601 0 9.63585 0 10.1403C0 10.6447 0.548437 11.0545 1.22344 11.0545H49.8129L39.6352 18.6602C39.1184 18.9912 39.0551 19.5666 39.498 19.9528C39.941 20.339 40.7109 20.3863 41.2277 20.0552C41.2805 20.0237 41.3227 19.9922 41.3648 19.9528L53.6414 10.7787C54.116 10.424 54.116 9.84865 53.6414 9.4861Z"
+                                                    fill="#7AC142" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>   
+                    {% endif %}
+              {% endfor %}
+                    </ul>
+                </div>
+            </div>
+    </section>  
+                                                  
+<style>
+     {% for block in section.blocks %}
+       {% if block.type == "slide" %}
+          .custom_li_{{ forloop.index }} .services_part .cs::after{background:{{ block.settings.bg_img}};}
+       {% endif %}
+     {% endfor %}
+
+</style>
+                                                  
+
+{% schema %}
+  {
+    "name": "services section",
+    "settings": [
+         {
+                "type": "image_picker",
+                "id": "side_img",
+                "label": "Service type image"
+            },
+         {
+              "type": "text",
+              "id": "heading",
+              "label": "Title",
+              "default":" B2B Build Your Business"
+            }
+    ],
+    "blocks": [
+        {
+        "type": "slide",
+        "name": "Slide",
+        "limit": 3,
+        "settings": [
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Mega menu Title"
+            },
+            {
+                "type": "image_picker",
+                "id": "s_img",
+                "label": "Service type image"
+            },
+           {
+              "type": "text",
+              "id": "s_head",
+              "label": "Service Title"
+            },
+            {
+                "type": "richtext",
+                "id": "s_dis",
+                "label": "Service Discription"
+            },
+            {
+                "type": "color",
+                "id": "bg_img",
+                "label": "Image Shadow"
+              }
+            ]
+            }
+          ]
+ ,
+  "presets": [
+    {
+      "name": "services-section",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

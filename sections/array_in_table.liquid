@@ -1,0 +1,54 @@
+{% assign cheeses = "cheddar, swiss, gouda, havarti, string" | split: ','%}
+{% assign  pizza = "green, tomoto, onion, garlic, pinapple" | split: ','%}
+
+{% assign mixarray = "" %}
+    {% for clist in cheeses  %}
+      {% assign new = clist | append:':' | append:  pizza[forloop.index0] | append:',' %}
+      {% assign mixarray  = mixarray | append: new  %}
+      
+    {% endfor %}  
+<br>
+{% assign mi1 = mixarray | split: ',' %}
+
+<div class="container">
+<table >
+    <thead>
+  <tr>
+    <th>cheese</th>
+    <th>pizza </th>
+  </tr>
+    </thead>
+
+    <tbody>
+        {% for mi in mi1  %}
+     <tr>
+          <td>
+            {{  mi | split: ':' | first }}
+          </td>
+         <td>
+            {{  mi | split: ':' | last }}
+          </td>
+     </tr>
+        {% endfor %}
+      
+    </tbody>
+</table>
+</div>
+{% schema %}
+  {
+    "name": "Array_in_table",
+    "settings": [],
+    "presets": [
+      {
+        "name": "Array_in_table",
+        "category": "ADVANCED LAYOUT"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

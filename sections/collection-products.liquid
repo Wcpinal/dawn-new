@@ -1,0 +1,120 @@
+  <div class="coll_product_part">
+        <div class="container">
+            <div class="p_main_part">
+                <ul>
+                  {% for product in collection.products limit: section.settings.products_to_show  %}
+                    {% if section.settings.p_col == 2 %}
+                    <li class="col col3 col-sm-4 col-xs-6">
+                      {% else %}
+                      <li class="col col3 col-sm-4 col-xs-12">
+                        {% endif %}
+                        <div class="product_main">
+                          
+                            <figure>
+                                <a href="{{ product.url }}">
+                                    <img src="{{ product.featured_image | image_url: width: 750 }}" alt="">
+                                </a>
+                            </figure>
+                          
+                            <div class="product_details">
+                              {% comment %}
+                                <p>{{ product.description }}</p>
+                              {% endcomment %}
+                                <h6>
+                                    <a href="{{ product.url }}">
+                                       {{ product.title  }}
+                                    </a>
+                                </h6>
+                                <div class="price">
+                                    <span class="new_price">
+                                       {{ product.price }}
+                                    </span>
+                                    <span class="old_price">
+                                        {{ product.compare_at_price }}
+                                    </span>
+                                </div>
+
+                                <svg width="73" height="13" viewBox="0 0 73 13" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.01613 0.0963135L7.88529 3.52364L11.7225 4.24221L9.04049 7.07899L9.54284 10.9504L6.01613 9.27631L2.48942 10.9504L2.99177 7.07899L0.30979 4.24221L4.14697 3.52364L6.01613 0.0963135Z"
+                                        fill="#B5B5B5" />
+                                    <path
+                                        d="M21.0161 0.0963135L22.8853 3.52364L26.7225 4.24221L24.0405 7.07899L24.5428 10.9504L21.0161 9.27631L17.4894 10.9504L17.9918 7.07899L15.3098 4.24221L19.147 3.52364L21.0161 0.0963135Z"
+                                        fill="#B5B5B5" />
+                                    <path
+                                        d="M36.0161 0.0963135L37.8853 3.52364L41.7225 4.24221L39.0405 7.07899L39.5428 10.9504L36.0161 9.27631L32.4894 10.9504L32.9918 7.07899L30.3098 4.24221L34.147 3.52364L36.0161 0.0963135Z"
+                                        fill="#B5B5B5" />
+                                    <path
+                                        d="M51.0161 0.0963135L52.8853 3.52364L56.7225 4.24221L54.0405 7.07899L54.5428 10.9504L51.0161 9.27631L47.4894 10.9504L47.9918 7.07899L45.3098 4.24221L49.147 3.52364L51.0161 0.0963135Z"
+                                        fill="#B5B5B5" />
+                                    <path
+                                        d="M66.0161 0.0963135L67.8853 3.52364L71.7225 4.24221L69.0405 7.07899L69.5428 10.9504L66.0161 9.27631L62.4894 10.9504L62.9918 7.07899L60.3098 4.24221L64.147 3.52364L66.0161 0.0963135Z"
+                                        fill="#B5B5B5" />
+                                </svg>
+
+                                <div class="shop_now btn ">
+                                    <a href="{{ product.url }}">
+                                        Shop Now
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </li>
+                    {% endfor %}                  
+                 </ul>
+            </div>
+        </div>
+    </div>
+
+{% schema %}
+  {
+    "name": "collection-products",
+    "settings": [
+      {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "default": 8,
+      "label": "Products to show"
+    },
+      {
+      "type": "header",
+      "content": "Mobile Layout"
+    } ,
+    {
+      "type": "select",
+      "id": "p_col",
+      "label": "Product column",
+      "options": [
+        {
+          "value": "1",
+          "label": "one column"
+        },
+        {
+          "value": "2",
+          "label": "two column"
+        }
+      ],
+      "default": "2"
+     }
+    ],
+      "presets": [
+    {
+      "name": "collection-products ",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

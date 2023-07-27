@@ -1,0 +1,176 @@
+  <section class="customer-review">
+        <div class="container">
+            <div class="cr_main">
+
+                <div class="head">
+                    <ul>
+                        <li>
+                            <img src="https://cdn.shopify.com/s/files/1/0313/4328/0264/files/d1.jpg?v=1665123560" alt="">
+                        </li>
+                        <li>
+                            <img src="https://cdn.shopify.com/s/files/1/0313/4328/0264/files/d2.jpg?v=1665123569" alt="">
+                        </li>
+                        <li>
+                            <img src="https://cdn.shopify.com/s/files/1/0313/4328/0264/files/d3.jpg?v=1665123573" alt="">
+                        </li>
+                    </ul>
+                    <h2>
+                       {{ section.settings.heading }}
+                    </h2>
+                </div>
+                <div class="cr_slider">
+
+                    <div class="swiper review_slider">
+                        <div class="swiper-wrapper">
+
+                          {% for block in section.blocks %}
+                            <div class="swiper-slide col66 col">
+                                <div class="cr_details">
+
+                                    <figure>
+                                      {% if block.settings.s_img != blank %}
+                                        <img src="{{ block.settings.s_img | img_url:"master" }}" alt="">
+                                        {% endif %}
+                                    </figure>
+
+                                    <div class="review_part">
+
+                                      {% capture  star %}
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">      
+                                            <path d="M8.33333 0.5L10.9294 5.8552L16.2588 6.97797L12.5338 11.4104L13.2315 17.4595L8.33333 14.8438L3.43512 17.4595L4.13283 11.4104L0.407862 6.97797L5.73728 5.8552L8.33333 0.5Z" fill="#FFCE6F" />
+                                        </svg>
+                                       {% endcapture %}
+                            
+                                        {% assign n = section.settings.star %}
+                                        {% for i in (1..n) %}
+                                        {{ star }}
+                                        {% endfor %}
+                                        <h4>
+                                           {{ block.settings.s_head }}
+                                        </h4>
+                                     {{ block.settings.s_dis }}
+                                        <div>{{ block.settings.customer }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                               {% endfor %}               
+                        </div>
+
+                        <div class="cr-prev slider-arrow" tabindex="0" role="button" aria-label="Next slide"
+                            aria-controls="swiper-wrapper-abed8191101094f100" aria-disabled="false">
+
+                            <svg width="15" height="27" viewBox="0 0 15 27" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 25L2.68667 13.5L13 2" stroke="#5A5A5A" stroke-width="3" />
+                            </svg>
+
+                        </div>
+                        <div class="cr-next  slider-arrow" tabindex="0" role="button" aria-label="Next slide"
+                            aria-controls="swiper-wrapper-abed8191101094f100" aria-disabled="false">
+
+                            <svg width="15" height="27" viewBox="0 0 15 27" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 25L12.3133 13.5L2 2" stroke="#5A5A5A" stroke-width="3" />
+                            </svg>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </section>
+{% schema %}
+  {
+    "name": "customer-review",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Title",
+        "default":"Happy Customers."
+      },
+          {
+            "type": "select",
+            "id": "star",
+            "label": "Vertical alignment",
+            "options": [
+              {
+                "value": "1",
+                "label": "1 star"
+              },
+              {
+                "value": "2",
+                "label": "2 star"
+              },
+              {
+                "value": "3",
+                "label": "3 star"
+              },
+              {
+                "value": "4",
+                "label": "4 star"
+              },
+              {
+                "value": "5",
+                "label": "5 star"
+              }
+            ],
+            "default": "5"
+          }
+    ],
+    
+    "blocks": [
+        {
+        "type": "slide",
+        "name": "Slide",
+        "limit": 2,
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "s_img",
+                "label": "Customer image"
+            },
+            
+           {
+              "type": "text",
+              "id": "s_head",
+              "label": "Title"
+            },
+            {
+                "type": "richtext",
+                "id": "s_dis",
+                "label": "Customer Review Discription"
+            },
+           {
+              "type": "text",
+              "id": "customer",
+              "label": "Title"
+            }
+            ]
+            }
+          ]
+    ,
+  "presets": [
+    {
+      "name": "customer-review",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

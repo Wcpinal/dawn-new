@@ -1,0 +1,52 @@
+                         <div class="product_main">
+                                    <figure>
+                                        <a href="{{ best-seller.url }}">
+                                            <img src="{{ best-seller.featured_image | img_url:'original' }}" alt="">
+                                        </a>
+                                    </figure>
+                                    <div class="product_details">
+                                        {% if s_theading != false %}
+                                        <p style="visibility:visible;">Blue Ribbon Organics</p>
+                                       {% else %}
+                                          <p style="visibility:hidden;">Blue Ribbon Organics</p>
+                                       {% endif %}
+                                        <h6>
+                                            <a href="{{ best-seller.url }}">
+                                              {{ best-seller.title }}
+                                            </a>
+                                        </h6>
+                                        <div class="price">
+                                            <span class="new_price">
+                                                   $ 47.87
+                                            </span>
+                                            <span class="old_price">
+                                                $ 47.87
+                                            </span>
+                                        </div>
+
+                                        <svg width="73" height="13" viewBox="0 0 73 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.01613 0.0963135L7.88529 3.52364L11.7225 4.24221L9.04049 7.07899L9.54284 10.9504L6.01613 9.27631L2.48942 10.9504L2.99177 7.07899L0.30979 4.24221L4.14697 3.52364L6.01613 0.0963135Z" fill="#B5B5B5"></path>
+                                            <path d="M21.0161 0.0963135L22.8853 3.52364L26.7225 4.24221L24.0405 7.07899L24.5428 10.9504L21.0161 9.27631L17.4894 10.9504L17.9918 7.07899L15.3098 4.24221L19.147 3.52364L21.0161 0.0963135Z" fill="#B5B5B5"></path>
+                                            <path d="M36.0161 0.0963135L37.8853 3.52364L41.7225 4.24221L39.0405 7.07899L39.5428 10.9504L36.0161 9.27631L32.4894 10.9504L32.9918 7.07899L30.3098 4.24221L34.147 3.52364L36.0161 0.0963135Z" fill="#B5B5B5"></path>
+                                            <path d="M51.0161 0.0963135L52.8853 3.52364L56.7225 4.24221L54.0405 7.07899L54.5428 10.9504L51.0161 9.27631L47.4894 10.9504L47.9918 7.07899L45.3098 4.24221L49.147 3.52364L51.0161 0.0963135Z" fill="#B5B5B5"></path>
+                                            <path d="M66.0161 0.0963135L67.8853 3.52364L71.7225 4.24221L69.0405 7.07899L69.5428 10.9504L66.0161 9.27631L62.4894 10.9504L62.9918 7.07899L60.3098 4.24221L64.147 3.52364L66.0161 0.0963135Z" fill="#B5B5B5"></path>
+                                        </svg>
+
+                                          {% if shop_now != false %}
+                                        <div class="shop_now btn" style="visibility:visible;" >
+                                            <a href="#" >
+                                                Shop Now
+                                            </a>
+                                        </div>
+                                      {% else %}
+                                             <div class="shop_now btn" style="visibility:hidden;" >
+                                            <a href="#" >
+                                                Shop Now
+                                            </a>
+                                        </div> 
+                                           {% endif %}
+
+
+                                    </div>
+
+                                </div>

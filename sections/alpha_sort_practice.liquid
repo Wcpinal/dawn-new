@@ -1,0 +1,110 @@
+   <div class="main_div">
+      <div class="container">
+  <ul class="qa_right_list">
+        
+        {% assign arrayVal = "" %}
+       
+         {% for block in section.blocks %}
+               {% assign catVal = block.settings.cat  %} 
+                {% assign arrayVal = arrayVal | append:block.settings.cat | append:"," %}
+         {% endfor %}        
+          
+        {% assign  arrayVal1 = arrayVal | split:"," %}
+          {% assign  arrayVal2 = arrayVal1 | uniq %}
+          
+          {% for val in arrayVal2 %}
+         <li>
+            <a href="#!">
+          Catogory Name:{{ val }}
+
+                                <span class="plus">
+                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M8.7595 5.985H5.5465V9.283H3.3025V5.985H0.0894956V3.911H3.3025V0.613H5.5465V3.911H8.7595V5.985Z"
+                                            fill="#2D2D2D" />
+                                    </svg>
+                                </span>
+
+                                <span class="minus d-none">
+                                    <svg width="8" height="3" viewBox="0 0 8 3" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.88247 0.928V2.934H0.674468V0.928H7.88247Z" fill="#2D2D2D" />
+                                    </svg>
+
+                                </span>
+              
+            </a>     
+           
+           <div class="qa_answer">
+              {% for block in section.blocks %}
+                {% if  block.settings.cat == val %}
+        
+                   <div class="que">
+                       Question:{{ block.settings.que }}
+                  </div>
+            
+                  <div class="ans">
+                      Answer:{{ block.settings.ans }}
+                  </div>
+                  
+           
+                {% endif %}          
+              {% endfor %}
+            
+         </div>
+      
+       </li>
+
+           {% endfor %}  
+
+
+
+
+        
+</ul>
+      </div>
+    </div>
+  
+  {% schema %}
+  {
+    "name": "Alpha sort",
+    "settings": [],
+     "blocks": [
+        {
+        "type": "slide",
+        "name": "Slide",
+        "limit":6,
+        "settings": [
+             {
+        "type": "text",
+        "id": "cat",
+        "label": "Category Heading "
+       },
+       {
+        "type": "text",
+        "id": "que",
+        "label": "Question"
+       },
+       {
+        "type": "text",
+        "id": "ans",
+        "label": "Answer "
+       }
+        ]
+        }
+     ],
+    "presets": [
+    {
+      "name": "Alpha sort",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

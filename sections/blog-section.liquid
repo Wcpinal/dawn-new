@@ -1,0 +1,180 @@
+   <section class="blog">
+       {% if section.settings.side_img != blank %}
+                                <img src="{{ section.settings.side_img | img_url:"original" }}" alt="">
+                              {% endif %}
+        <div class="container">
+            <div class="blog_main">
+                <div class="head">
+                    <h2>
+                        Latest Blog Posts.
+                    </h2>
+
+                </div>
+                <div class="blog_parts hb_blogs">
+                    <div class="blog_left">
+                        <figure>
+                              {% if section.settings.b_img != blank%}
+                            <a href="#">
+                                <img src="{{ section.settings.b_img | img_url:"master" }}" alt="">
+                            </a>
+                              {% endif %}
+                        </figure>
+                        <div class="bl_details">
+                            <div class="f">
+
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.9638 5.29181C13.8733 4.99735 13.6213 4.78579 13.3227 4.7572L9.28156 4.37411L7.6843 0.471717C7.5665 0.185828 7.298 0 6.99937 0C6.70074 0 6.43225 0.185828 6.31444 0.471717L4.71718 4.37411L0.676083 4.7572C0.380193 4.78579 0.128138 4.99449 0.0349871 5.29181C-0.0581636 5.58914 0.0267679 5.91219 0.251426 6.11803L3.30622 8.91403L2.40759 13.0508C2.34184 13.3539 2.45417 13.6712 2.698 13.8513C2.82677 13.9485 2.98019 14 3.13362 14C3.26512 14 3.39663 13.9628 3.51444 13.8885L6.99937 11.7157L10.4843 13.8885C10.7391 14.0486 11.0596 14.0343 11.3035 13.8513C11.5446 13.6684 11.6596 13.3539 11.5939 13.0508L10.6925 8.91117L13.7473 6.11517C13.9692 5.90933 14.0542 5.58628 13.9638 5.29181Z"
+                                        fill="#FFC107" />
+                                </svg>
+                                <span>Featured</span>
+                            </div>
+                            <div class="b_head">
+                                <h3>
+                                    <a href="#">
+                                       {{ section.settings.b_head }}
+                                    </a>
+                                </h3>
+                                <p>by Jake Davis</p>
+                            </div>
+                   {{ section.settings.b_dis }}
+                            <div class="read_more">
+                                <a href="#">
+                                      {{ section.settings.sub }}
+                                    <span>
+                                        <svg width="41" height="15" viewBox="0 0 41 15" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M40.2311 7.01982L31.0315 0.239788C30.6993 -0.0458706 30.1219 -0.0750195 29.7343 0.164001C29.3467 0.408852 29.2992 0.834425 29.6314 1.12008C29.6631 1.14923 29.6947 1.17255 29.7343 1.19587L37.3676 6.82743H0.917578C0.411328 6.82743 0 7.13058 0 7.50369C0 7.87679 0.411328 8.17994 0.917578 8.17994H37.3597L29.7264 13.8057C29.3388 14.0505 29.2913 14.4761 29.6235 14.7618C29.9558 15.0474 30.5332 15.0824 30.9208 14.8375C30.9604 14.8142 30.992 14.7909 31.0236 14.7618L40.2311 7.9759C40.587 7.71356 40.587 7.28799 40.2311 7.01982Z"
+                                                fill="#7AC142" />
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+
+                            <div class="b_bottom">
+                                <span>Pond, Maintenance</span>
+                                <span>April 10, 2021</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="blog_right">
+                        <ul>
+                          {% for block in section.blocks %}
+                            <li>
+                                <figure>
+                                  {% if block.settings.s_img != blank%}
+                                    <a href="#">
+                                        <img src="{{ block.settings.s_img | img_url:"master" }}" alt="">
+                                    </a>
+                                    {% endif %}
+                                </figure>
+                                <div class="br_details">
+                            {% if block.settings.s_dis != blank %}
+                                    <a href="#">
+                                       {{ block.settings.s_dis }}
+                                    </a>
+                              {% endif %}
+                                    <div>
+                                      {% if block.settings.s_head != blank %}
+                                        <span> {{ block.settings.s_head }}</span>
+                                            {% endif %}
+                                        {% if block.settings.sub != blank %}
+                                        <p> {{ block.settings.sub }}</p>
+                                          {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                           {% endfor %}
+                          
+                           
+                        </ul>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </section>
+
+{% schema %}
+  {
+    "name": "blog section",
+    "settings": [
+      {
+                "type": "image_picker",
+                "id": "side_img",
+                "label": "Blog side image"
+            },
+     {
+          "type": "image_picker",
+          "id": "b_img",
+          "label": "Service type image"
+      },
+     {
+        "type": "text",
+        "id": "b_head",
+        "label": "Service Title"
+      },
+      {
+          "type": "richtext",
+          "id": "b_dis",
+          "label": "Service Discription"
+      },
+     {
+        "type": "text",
+        "id": "sub",
+        "label": "link Title"
+      }
+    ]
+    ,
+    "blocks": [
+        {
+        "type": "slide",
+        "name": "Slide",
+        "limit": 3,
+        "settings": [
+              
+          {
+                "type": "image_picker",
+                "id": "s_img",
+                "label": "Blog type image"
+            },
+           {
+              "type": "text",
+              "id": "s_head",
+              "label": "Blog Title"
+            },
+            {
+                "type": "richtext",
+                "id": "s_dis",
+                "label": "Blog Discription"
+            },
+           {
+              "type": "text",
+              "id": "sub",
+              "label": "Blog date"
+            }
+            ]
+            }
+          ] ,
+    "presets": [
+    {
+      "name": "blog section",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

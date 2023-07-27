@@ -1,0 +1,220 @@
+   <section class="product_section">
+       {% if section.settings.side_img != blank %}
+        <img src="{{ section.settings.side_img | img_url:"original" }}" alt="">
+       {% endif %}
+        <div class="container">
+            <div class="main_part">
+                <div class="part_left">
+                  {% if section.settings.head != blank %}
+                    <h2 >
+                      {{ section.settings.head }}
+                    </h2>
+                    {% else %}
+                    <h2 class="{{ section.settings.heading_size }}">
+                      {{ section.settings.collection.title }}
+                    </h2>
+                    {% endif %}
+                    
+                    {% if  section.settings.p_dis != blank %}
+                      <div class="{{ section.settings.description_style }}"
+                           {{ section.settings.p_dis }}
+                        </div>
+                 {% else %}
+                      <div class="{{ section.settings.description_style }}"
+                      {{ section.settings.collection.description }}
+                       </div>
+                      {% endif %}
+                </div>
+
+                <div class="slider_part " >
+                    <div class="swiper slider">
+                        <div class="swiper-wrapper">
+                {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
+                  {% if section.settings.p_col == "1" %}
+                         <div class="swiper-slide col4 col-s-12 col">
+                    {% else %}
+                    <div class="swiper-slide col4 col-s-6 col">
+                    {% endif %}
+                         {% render 'best-seller-product',
+                           best-seller:product,
+                           s_theading:section.settings.show_description ,
+                           shop_now:section.settings.enable_desktop_slider
+                         %}
+                         </div>
+                   {% endfor %}
+                          </div>
+                      
+                   <div class="swiper-prev slider-arrow" tabindex="0" role="button" aria-label="Next slide"
+                      aria-controls="swiper-wrapper-abed8191101094f100" aria-disabled="false">
+
+                      <svg width="15" height="27" viewBox="0 0 15 27" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M13 25L2.68667 13.5L13 2" stroke="#5A5A5A" stroke-width="3" />
+                      </svg>
+
+                  </div>
+                  <div class="swiper-next slider-arrow" tabindex="0" role="button" aria-label="Next slide"
+                      aria-controls="swiper-wrapper-abed8191101094f100" aria-disabled="false">
+
+                      <svg width="15" height="27" viewBox="0 0 15 27" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2 25L12.3133 13.5L2 2" stroke="#5A5A5A" stroke-width="3" />
+                      </svg>
+
+                  </div>
+                    
+
+                    </div>
+                </div>
+     
+            </div>
+        </div>
+    </section>
+
+  <style>
+    
+  </style>
+
+{%- style -%}
+
+   @media (max-width: 575px) {
+   .slider_part {margin-bottom: {{ section.settings.m_bottom }}px;}
+   .product_section {margin-top:{{ section.settings.m_top }}px;}
+  }
+{%- endstyle -%}
+
+                            
+{% schema %}
+  {
+    "name": "product-features",
+    "settings": [
+      {
+       "type": "image_picker",
+        "id": "side_img",
+        "label": "Service type image"
+      },
+      {
+      "type": "text",
+      "id": "head",
+      "label": "Section heading "
+     },
+     {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Medium"
+    },
+    {
+      "type": "richtext",
+      "id": "p_dis",
+      "label": "Section heading "
+    },
+      {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "select",
+      "id": "description_style",
+      "label": "Description style",
+      "options": [
+        {
+          "value": "body",
+          "label": "body"
+        },
+        {
+          "value": "subtitle",
+          "label": "subtitle"
+        },
+        {
+          "value": "uppercase",
+          "label": "uppercase"
+        }
+      ],
+      "default": "body"
+     },
+        {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Enable Product type heading",
+      "default": false
+     },
+       {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show"
+    } ,
+      {
+      "type": "header",
+      "content": "Mobile Layout"
+    },
+       {
+      "type": "range",
+      "id": "m_bottom",
+      "min": 50,
+      "max": 150,
+      "step": 10,
+      "default": 100,
+       "unit": "px",
+      "label": "margin Bottom"
+    },
+       {
+      "type": "range",
+      "id": "m_top",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "default": 14,
+       "unit": "px",
+      "label": "margin top"
+    },
+    {
+      "type": "select",
+      "id": "p_col",
+      "label": "Product column",
+      "options": [
+        {
+          "value": "1",
+          "label": "one column"
+        },
+        {
+          "value": "2",
+          "label": "two column"
+        }
+      ],
+      "default": "2"
+     }
+    ],
+    "presets": [
+    {
+      "name": "product-features",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

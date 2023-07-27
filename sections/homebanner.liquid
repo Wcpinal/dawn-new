@@ -1,0 +1,259 @@
+ <section class="home-banner">
+       <div class="hb_img">
+         <div class="opacity" style="opacity:{{ section.settings.Opacity }}% ;">
+           
+         </div>
+         {% if section.settings.s_img == blank %}
+          <figure style="width:100%;" class="i_height-{{ section.settings.img_size }}">
+              <img src="{{ section.settings.b_img | img_url: 'master'  }}" alt="" class="f_img">
+          </figure>
+         {% else %}
+             {% if section.settings.adp_show == true %}
+              <figure style="width:50%;">
+                  <img src="{{ section.settings.b_img | img_url: 'master'  }}" alt="" class="f_img">
+              </figure> 
+              <figure style="width:50%;">
+                  <img src="{{ section.settings.s_img | img_url: 'master'  }}" alt="" class="s_img">
+              </figure>
+             {% endif %}
+         {% endif %}
+       </div>
+
+        <div class="hb_main hb-{{ section.settings.banner_content }}">
+            <div class="container">
+               {% if section.settings.con_show %}
+                <div class="hb_content hb-{{ section.settings.c_align }} hm-{{ section.settings.cm_align }}" style="background:#000;padding:20px">
+                  
+                   {% if section.settings.banner_text != blank %}
+                    <h1 style="color:{{ section.settings.bt_color }}">
+                      {{ section.settings.banner_text }}
+                    </h1>
+                  {% endif %}
+
+                   {% if section.settings.btn_text != blank %}
+                    <a href="#" class="btn"  style="color:{{ section.settings.btn_color }};background:{{ section.settings.btn_bg }}">
+                      {{ section.settings.btn_text }}
+                    </a>
+                    {% endif %}
+                </div>
+          {% else  %}
+          <div class="hb_content hb-{{ section.settings.c_align }} hm-{{ section.settings.cm_align }}" style="background:transparent;padding:0px">         
+                   {% if section.settings.banner_text != blank %}
+                    <h1 style="color:{{ section.settings.bt_color }}">
+                      {{ section.settings.banner_text }}
+                    </h1>
+                  {% endif %}
+
+                   {% if section.settings.btn_text != blank %}
+                    <a href="#" class="btn"  style="color:{{ section.settings.btn_color }};background:{{ section.settings.btn_bg }}">
+                      {{ section.settings.btn_text }}
+                    </a>
+                    {% endif %}
+                </div>
+              {% endif %}
+            </div>
+        </div>
+
+    </section>
+
+{% schema %}
+  {
+    "name": "Home-banner",
+    "settings": [
+      {
+      "type": "image_picker",
+      "id": "b_img",
+      "label": "Banner Image"
+    },
+      {
+      "type": "image_picker",
+      "id": "s_img",
+      "label": "Second Image"
+    } ,  
+       {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner text",
+        "default": "Nature's Technology At Work In Your World"
+    } , 
+       {
+      "type": "color",
+      "id": "bt_color",
+      "label": "Banner text color",
+        "default": "#fff"
+    } , 
+       {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button text",
+        "default": "Explore Our Products"
+    }
+       , 
+       {
+      "type": "color",
+      "id": "btn_color",
+      "label": "Button text color",
+        "default": "#fff"
+    },
+        
+       {
+      "type": "color_background",
+      "id": "btn_bg",
+      "label": "Button Background color",
+        "default": "#7AC142"
+    },
+           {
+      "type": "checkbox",
+      "id": "btn_check",
+      "label": "Button"
+    },
+          {
+      "type": "range",
+      "id": "Opacity",
+      "min": 10,
+      "max": 100,
+      "step": 10,
+      "unit":"%",
+      "label": "Opacity",
+      "default": 40
+    },
+           {
+      "type": "checkbox",
+      "id": "adp_show",
+      "label": "Adapt section height to first image size",
+       "default":false 
+    } 
+      ,
+      {
+    "type": "select",
+    "id": "img_size",
+    "label": "Img Size",
+    "options": [
+      {
+        "value": "small",
+        "label": "Small"
+      },
+      {
+        "value": "medium",
+        "label": "Medium"
+      },
+      {
+        "value": "Large",
+        "label": "Large"
+      }
+      ],
+      "default": "medium"
+    }
+     ,
+           {
+      "type": "checkbox",
+      "id": "con_show",
+      "label": "Show container on desktop",
+      "default":false    
+           } 
+      ,  {
+      "type": "select",
+      "id": "banner_content",
+      "label":  "Content Position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top Left"
+        },
+        {
+          "value": "top-center",
+          "label": "Top Center"
+        },
+        {
+          "value": "top-right",
+          "label": "Top Right"
+        },
+        {
+          "value": "middle-left",
+          "label": "Middle Left"
+        },
+        {
+          "value": "middle-center",
+          "label": "Middle Center"
+        },
+        {
+          "value": "middle-right",
+          "label": "Middle Right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom Left"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom Center"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom Right"
+        }
+      ],
+        "default": "middle-left"
+    }
+      ,
+      {
+    "type": "select",
+    "id": "c_align",
+    "label": "Content Alignment",
+    "options": [
+      {
+        "value": "left",
+        "label": "Left"
+      },
+      {
+        "value": "center",
+        "label": "Center"
+      },
+      {
+        "value": "right",
+        "label": "Right"
+      }
+      ],
+      "default": "left"
+    },
+        {
+     "type": "header",
+      "content": "Mobile align"
+   },
+      {
+    "type": "select",
+    "id": "cm_align",
+    "label": "Content Alignment",
+    "options": [
+      {
+        "value": "left",
+        "label": "Left"
+      },
+      {
+        "value": "center",
+        "label": "Center"
+      },
+      {
+        "value": "right",
+        "label": "Right"
+      }
+      ],
+      "default": "left"
+    }
+      
+    ],
+ 
+  "presets": [
+    {
+      "name": "Home-banner",
+      "category": "ADVANCED LAYOUT"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
